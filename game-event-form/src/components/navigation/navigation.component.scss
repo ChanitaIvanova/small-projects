@@ -1,0 +1,22 @@
+:host{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 2;
+
+    .menu {
+        button {
+            margin-right: 1rem;
+        }
+    }
+
+    nav {
+        background: #ffd9e1;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        padding: 8px 16px;
+    }
+}
