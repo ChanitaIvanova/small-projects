@@ -1,9 +1,5 @@
 <h2>Log In</h2>
-<div class="error" *ngIf="error">
-    <mat-error>
-        {{error}}
-    </mat-error>
-</div>
+<general-error *ngIf="error" [error]="error"/>
 <div>
     <form [formGroup]="form" (ngSubmit)="onSubmit()">
         <div>

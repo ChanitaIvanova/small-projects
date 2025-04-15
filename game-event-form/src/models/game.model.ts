@@ -1,13 +1,15 @@
+import { Moment } from "moment";
+
 export interface IGameModel {
     title: string;
-    date: Date;
+    date: Moment;
     location: string;
     maxPlayers: number;
 }
 
 class GameModel implements IGameModel {
     public title: string;
-    public date: Date;
+    public date: Moment;
     public location: string;
     public maxPlayers: number;
 

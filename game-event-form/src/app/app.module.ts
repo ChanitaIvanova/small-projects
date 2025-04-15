@@ -14,11 +14,12 @@ import { Navigation } from '../components/navigation/navigation.component';
 import { routes } from './app.routes';
 import { SignUp } from '../components/signUp/signUp.component';
 import { Login } from '../components/logIn/login.component';
+import { GeneralError } from '../components/generalError/generalError.component';
+import { provideHttpClient } from '@angular/common/http';
 
 @NgModule({
     declarations: [AppComponent, GameForm, SignUp, Login, Navigation],
     imports: [
-        BrowserModule,
         BrowserAnimationsModule,
         RouterModule.forRoot([]),
         MatSlideToggleModule,
@@ -27,8 +28,9 @@ import { Login } from '../components/logIn/login.component';
         MatDatepickerModule,
         MatButtonModule,
         ReactiveFormsModule,
+        GeneralError
     ],
-    providers: [provideRouter(routes)],
+    providers: [provideRouter(routes), provideHttpClient()],
     bootstrap: [AppComponent]
 })
 export class AppModule { }
