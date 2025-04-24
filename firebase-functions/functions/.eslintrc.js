@@ -20,6 +20,8 @@ module.exports = {
   ignorePatterns: [
     "/lib/**/*", // Ignore built files.
     "/generated/**/*", // Ignore generated files.
+    "/node_modules/**/*", // Ignore node_modules
+    "/.eslintrc.js",
   ],
   plugins: [
     "@typescript-eslint",
@@ -29,6 +31,9 @@ module.exports = {
     "quotes": ["error", "double"],
     "import/no-unresolved": 0,
     "object-curly-spacing": 0,
-    "indent": ["error", 2],
+    "linebreak-style": 0,
+    "indent": ["error", 4],
+    "max-len": ["error", 120],
+    "require-jsdoc": 0,
   },
 };

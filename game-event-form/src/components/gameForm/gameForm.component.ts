@@ -6,6 +6,7 @@ import moment from "moment";
 import { MY_DATE_FORMATS } from "../../config/date-formats";
 import { AuthService } from "../../services/auth.service";
 import { GamesService } from "../../services/games.service";
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'game-form',
@@ -31,26 +32,30 @@ export class GameForm {
     maxPlayers: new FormControl(1, Validators.required),
   })
 
-  error: string = "";
+  errorMessage: string = "";
+  successMessage: string = "";
 
-  constructor(private authService: AuthService, private gamesService: GamesService) { }
+  constructor(private authService: AuthService, private gamesService: GamesService, private router: Router) { }
 
   async onSubmit() {
     if (this.form.valid) {
-
+      this.successMessage = "";
+      this.errorMessage = "";
       if (this.authService.isAuthenticatedUser()) {
         this.gamesService.createGame({
           title: this.form.controls["title"].value || "",
           date: this.form.controls["date"].value || moment(new Date(), 'DD/MM/YYYY'),
           location: this.form.controls["location"].value || "",
           maxPlayers: this.form.controls["maxPlayers"].value || 0,
-        }).subscribe((response) => {
-          console.log(response);
-        }, (error) => {
-          console.error(error);
-        });
+        }).subscribe({
+          error: (e) => {
+            this.errorMessage = e.error.message; 
+            console.error(e)
+          },
+          complete: () => this.successMessage = "Game created successfully"
+      });
       } else {
-        console.log("User not authenticated");
+        this.router.navigate(['/login']);
       }
     }
   }

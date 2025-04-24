@@ -16,6 +16,7 @@ import { SignUp } from '../components/signUp/signUp.component';
 import { Login } from '../components/logIn/login.component';
 import { GeneralError } from '../components/generalError/generalError.component';
 import { provideHttpClient } from '@angular/common/http';
+import { SuccessMessage } from '../components/successMessage/successMessage.component';
 
 @NgModule({
     declarations: [AppComponent, GameForm, SignUp, Login, Navigation],
@@ -28,7 +29,8 @@ import { provideHttpClient } from '@angular/common/http';
         MatDatepickerModule,
         MatButtonModule,
         ReactiveFormsModule,
-        GeneralError
+        GeneralError,
+        SuccessMessage
     ],
     providers: [provideRouter(routes), provideHttpClient()],
     bootstrap: [AppComponent]

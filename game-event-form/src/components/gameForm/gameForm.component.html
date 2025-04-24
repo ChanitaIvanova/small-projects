@@ -1,10 +1,13 @@
 <h2 *ngIf="isEditMode">Edit Game</h2>
 <h2 *ngIf="!isEditMode">New Game</h2>
+<general-error *ngIf="errorMessage" [error]="errorMessage"/>
+<success-message *ngIf="successMessage" [successMessage]="successMessage"/>
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
     <div>
         <mat-form-field appearance="fill">
             <mat-label>Title</mat-label>
             <input matInput formControlName="title">
+            <mat-error *ngIf="form.controls.title.hasError('required')">Title is required</mat-error>
         </mat-form-field>
     </div>
     <div>
@@ -14,18 +17,21 @@
             <mat-hint>DD/MM/YYYY</mat-hint>
             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker #picker></mat-datepicker>
+            <mat-error *ngIf="form.controls.date.hasError('required')">Date is required</mat-error>
         </mat-form-field>
     </div>
     <div>
         <mat-form-field appearance="fill">
             <mat-label>Location</mat-label>
             <input matInput formControlName="location">
+            <mat-error *ngIf="form.controls.location.hasError('required')">Location is required</mat-error>
         </mat-form-field>
     </div>
     <div>
         <mat-form-field appearance="fill">
             <mat-label>Max Players</mat-label>
             <input matInput type="number" min="1" formControlName="maxPlayers">
+            <mat-error *ngIf="form.controls.maxPlayers.hasError('required')">Max Players is required</mat-error>
         </mat-form-field>
     </div>
     <div>
