@@ -1,0 +1,23 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Debug GraphQL Server",
+            "runtimeArgs": [
+                "--env-file=${workspaceFolder}/task-tracker-server/.env",
+                "-r",
+                "ts-node/register"
+            ],
+            "args": [
+                "${workspaceFolder}/task-tracker-server/src/index.ts"
+            ],
+            "cwd": "${workspaceFolder}/task-tracker-server",
+            "protocol": "inspector",
+            "skipFiles": [
+                "<node_internals>/**"
+            ]
+        }
+    ]
+}
