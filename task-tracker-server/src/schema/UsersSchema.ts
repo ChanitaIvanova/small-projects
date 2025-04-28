@@ -11,7 +11,6 @@ export const userTypeDefs = `
   }
 
   input RegisterInput {
-    name: String!
     email: String!
     password: String!
   }
