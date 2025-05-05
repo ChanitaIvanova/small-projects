@@ -24,11 +24,6 @@ jobs:
           docker build -t ${{ secrets.DOCKER_USER }}/server:latest ./server
           docker push ${{ secrets.DOCKER_USER }}/server:latest
 
-      - name: Build and push Gateway
-        run: |
-          docker build -t ${{ secrets.DOCKER_USER }}/gateway:latest ./gateway
-          docker push ${{ secrets.DOCKER_USER }}/gateway:latest
-
       - name: Build and push DB
         run: |
           docker build -t ${{ secrets.DOCKER_USER }}/db:latest ./db
