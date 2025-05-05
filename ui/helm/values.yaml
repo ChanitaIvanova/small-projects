@@ -1,0 +1,9 @@
+replicaCount: 2
+image:
+  repository: ui
+  pullPolicy: IfNotPresent
+  tag: "1.0.6"
+name: ui
+service:
+  name: ui-service
+  port: 5173

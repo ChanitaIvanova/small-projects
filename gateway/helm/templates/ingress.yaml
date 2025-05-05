@@ -1,0 +1,27 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: {{ .Values.name }}
+  labels:
+    {{- include "gateway.labels" . | nindent 4 }}
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /$1
+spec:
+  rules:
+  - host: {{ .Values.host }}  # or use a custom domain via /etc/hosts
+    http:
+      paths:
+      - path: /api/(.*)
+        pathType: ImplementationSpecific
+        backend:
+          service:
+            name: {{ .Values.services.server.name }}  
+            port:
+              number: {{ .Values.services.server.port }}
+      - path: /(.*)
+        pathType: ImplementationSpecific
+        backend:
+          service:
+            name: {{ .Values.services.ui.name }}
+            port:
+              number: {{ .Values.services.ui.port }}

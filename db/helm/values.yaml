@@ -1,0 +1,12 @@
+replicaCount: 1
+image:
+  repository: db
+  pullPolicy: IfNotPresent
+  tag: "1.0.0"
+name: db
+service:
+  name: db-service
+  port: 5432
+pvc:
+  name: db-pvc
+  storage: 1Gi

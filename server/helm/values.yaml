@@ -1,0 +1,11 @@
+replicaCount: 2
+image:
+  repository: server
+  pullPolicy: IfNotPresent
+  tag: "1.0.3"
+name: server
+config:
+  logFormat: combined
+service:
+  name: server-service
+  port: 3200

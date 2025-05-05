@@ -1,0 +1,10 @@
+replicaCount: 2
+name: gateway-ingress
+host: "localhost"
+services:
+  server:
+    name: server-service
+    port: 3200
+  ui:
+    name: ui-service
+    port: 5173
