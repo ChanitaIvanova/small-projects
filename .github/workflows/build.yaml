@@ -1,0 +1,39 @@
+name: Build and Push Docker Image
+
+on:
+  push:
+    branches: [kubernetes-hands-on]
+
+jobs:
+  docker:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Log in to Docker Hub
+        run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u ${{ secrets.DOCKER_USER }} --password-stdin
+
+      - name: Build and push UI
+        run: |
+          cd ui
+          docker build -t ${{ secrets.DOCKER_USER }}/$DOCKER_REPO/ui:latest .
+          docker push ${{ secrets.DOCKER_USER }}/$DOCKER_REPO/ui:latest
+
+      - name: Build and push Server
+        run: |
+          cd server
+          docker build -t ${{ secrets.DOCKER_USER }}/$DOCKER_REPO/server:latest .
+          docker push ${{ secrets.DOCKER_USER }}/$DOCKER_REPO/server:latest
+
+      - name: Build and push Gateway
+        run: |
+          cd gateway
+          docker build -t ${{ secrets.DOCKER_USER }}/$DOCKER_REPO/gateway:latest .
+          docker push ${{ secrets.DOCKER_USER }}/$DOCKER_REPO/gateway:latest
+
+      - name: Build and push DB
+        run: |
+          cd db
+          docker build -t ${{ secrets.DOCKER_USER }}/$DOCKER_REPO/db:latest .
+          docker push ${{ secrets.DOCKER_USER }}/$DOCKER_REPO/db:latest
