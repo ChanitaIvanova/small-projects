@@ -17,23 +17,23 @@ jobs:
       - name: Build and push UI
         run: |
           cd ui
-          docker build -t ${{ secrets.DOCKER_USER }}/$DOCKER_REPO/ui:latest .
-          docker push ${{ secrets.DOCKER_USER }}/$DOCKER_REPO/ui:latest
+          docker build -t ${{ secrets.DOCKER_USER }}/${{ vars.DOCKER_REPO }}/ui:latest .
+          docker push ${{ secrets.DOCKER_USER }}/${{ vars.DOCKER_REPO }}/ui:latest
 
       - name: Build and push Server
         run: |
           cd server
-          docker build -t ${{ secrets.DOCKER_USER }}/$DOCKER_REPO/server:latest .
-          docker push ${{ secrets.DOCKER_USER }}/$DOCKER_REPO/server:latest
+          docker build -t ${{ secrets.DOCKER_USER }}/${{ vars.DOCKER_REPO }}/server:latest .
+          docker push ${{ secrets.DOCKER_USER }}/${{ vars.DOCKER_REPO }}/server:latest
 
       - name: Build and push Gateway
         run: |
           cd gateway
-          docker build -t ${{ secrets.DOCKER_USER }}/$DOCKER_REPO/gateway:latest .
-          docker push ${{ secrets.DOCKER_USER }}/$DOCKER_REPO/gateway:latest
+          docker build -t ${{ secrets.DOCKER_USER }}/${{ vars.DOCKER_REPO }}/gateway:latest .
+          docker push ${{ secrets.DOCKER_USER }}/${{ vars.DOCKER_REPO }}/gateway:latest
 
       - name: Build and push DB
         run: |
           cd db
-          docker build -t ${{ secrets.DOCKER_USER }}/$DOCKER_REPO/db:latest .
-          docker push ${{ secrets.DOCKER_USER }}/$DOCKER_REPO/db:latest
+          docker build -t ${{ secrets.DOCKER_USER }}/${{ vars.DOCKER_REPO }}/db:latest .
+          docker push ${{ secrets.DOCKER_USER }}/${{ vars.DOCKER_REPO }}/db:latest
